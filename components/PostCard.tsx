@@ -1,8 +1,8 @@
 // @ts-nocheck
 
 import React from 'react'
-import moment from 'moment'
 import Link from 'next/link'
+import { Author } from '../components/'
 
 const PostCard = ({ post }) => {
     return (
@@ -14,16 +14,7 @@ const PostCard = ({ post }) => {
                 <Link href={`/post/${post.slug}`}>{post.title}</Link>
             </h1>
             <div className='block lg:flex text-center items-center justify-center mb-8 w-full'>
-                <div className='flex items-center justify-center mb-4 lg:mb-0 w-full lg:auto mr-8'>
-                    <img
-                        alt={post.author.name}
-                        height='30px'
-                        width='30px'
-                        className='align-middle rounded-full'
-                        src={post.author.photo.url}
-                    />
-                    <p className='inline align-middle text-gray-700 ml-2 text-lg'>{post.author.name} on {moment(post.pubDate).format('MM DD YYYY')}</p>
-                </div>
+                <Author post={post} />
             </div>
             <p className='text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8 italic'>{post.excerpt}</p>
             <div className='text-center'>
