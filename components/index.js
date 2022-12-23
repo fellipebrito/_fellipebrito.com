@@ -4,3 +4,5 @@ export { default as PostWidget } from './PostWidget';
 export { default as Header } from './Header';
 export { default as Layout } from './Layout';
 export { default as PostDetail } from './PostDetail'
+export { default as FeaturedPostCard } from './FeaturedPostCard'
+export { default as Loader } from './Loader'
