@@ -2,40 +2,40 @@ import React from 'react';
 
 import { Author } from '../components/'
 
+const textModifier = (obj) => {
+    let modifier;
+
+    if (obj.bold) {
+        modifier = 'bold';
+    }
+
+    if (obj.italic) {
+        modifier = 'italic';
+    }
+
+    if (obj.underline) {
+        modifier = 'underline';
+    }
+
+    return modifier;
+}
+
 const newLocal = (index, text, obj, type) => {
     let modifiedText = text;
+    let modifier = textModifier(obj)
 
-    if (obj) {
-        if (obj.bold) {
-            modifiedText = (<b key={index}>{text}</b>);
-        }
-
-        if (obj.italic) {
-            modifiedText = (<em key={index}>{text}</em>);
-        }
-
-        if (obj.underline) {
-            modifiedText = (<u key={index}>{text}</u>);
-        }
+    if (obj.bold || obj.italic || obj.underline) {
+        modifiedText = (<span className={modifier} key={index}>{text}</span>);
     }
 
     switch (type) {
-        case 'heading-three':
-            return <h3 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h3>;
         case 'paragraph':
             return <p key={index} className="mb-8">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</p>;
-        case 'heading-four':
-            return <h4 key={index} className="text-md font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h4>;
         case 'iframe':
             return <iframe key={index} className="object-top w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg" height="400" src={obj.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>;
         case 'image':
             return (
-                <img
-                    key={index}
-                    alt={obj.title}
-                    height={obj.height}
-                    width={obj.width}
-                    src={obj.src} />
+                <img key={index} alt={obj.title} height={obj.height} width={obj.width} src={obj.src} />
             );
         default:
             return modifiedText;
