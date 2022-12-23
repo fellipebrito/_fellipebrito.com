@@ -4,6 +4,8 @@ import Link from 'next/link'
 
 import { getCategories } from '../services'
 
+import { CategoryLink } from '../components/'
+
 const Header = () => {
     const [categories, setCategories] = useState([])
     
@@ -23,11 +25,7 @@ const Header = () => {
                 </div>
                 <div className='hidden md:float-left md:contents'>
                     {categories.map((category) => (
-                        <Link key={category.slug} href={`/category/${category.slug}`}>
-                            <span className='md:float-right mt-2 align-middle text-white ml-4 font-semibold cursor-pointer'>
-                                {category.name}
-                            </span>
-                        </Link>
+                        <CategoryLink category={category} style='md:float-right mt-2 align-middle text-white ml-4 font-semibold cursor-pointer' />
                     ))}
                 </div>
             </div>
